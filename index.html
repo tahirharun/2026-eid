@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Al-Adha Mubarak</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #0a0618;
+    overflow-x: hidden;
+    font-family: 'Amiri', serif;
+    color: #f0e6c8;
+  }
+
+  .sky {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, #1a0a3c 0%, #0a0618 60%);
+    z-index: 0;
+  }
+
+  .stars-container {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--min-op, 0.3); transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  .main {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+
+  .moon-wrap {
+    position: relative;
+    margin-bottom: 32px;
+    animation: moonFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes moonFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .moon {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle at 35% 40%, #ffe89a, #f0c040 50%, #c88a00);
+    border-radius: 50%;
+    box-shadow: 0 0 40px 15px rgba(240,192,64,0.35), 0 0 80px 30px rgba(240,192,64,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .moon::after {
+    content: '';
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 68px; height: 68px;
+    background: #0a0618;
+    border-radius: 50%;
+  }
+
+  .star-moon {
+    position: absolute;
+    top: 10px; right: -22px;
+    font-size: 28px;
+    filter: drop-shadow(0 0 8px #ffe89a);
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .arabic-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    font-weight: 700;
+    color: #ffe89a;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255,232,154,0.6), 0 2px 4px rgba(0,0,0,0.8);
+    direction: rtl;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .english-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: #c8a04a;
+    text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    animation: fadeDown 1.4s ease both;
+  }
+
+  .subtitle {
+    font-family: 'Amiri', serif;
+    font-size: 1.05rem;
+    color: rgba(240,230,200,0.55);
+    text-align: center;
+    margin-bottom: 36px;
+    letter-spacing: 2px;
+    animation: fadeDown 1.6s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+    animation: fadeIn 2s ease both;
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c8a04a);
+  }
+
+  .divider-line.right {
+    background: linear-gradient(to left, transparent, #c8a04a);
+  }
+
+  .divider-diamond {
+    font-size: 18px;
+    color: #c8a04a;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .lanterns {
+    display: flex;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 44px;
+    animation: fadeIn 2.2s ease both;
+  }
+
+  .lantern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: lanternSwing var(--sw, 4s) ease-in-out infinite var(--sd, 0s);
+    transform-origin: top center;
+  }
+
+  @keyframes lanternSwing {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+  }
+
+  .lantern svg { filter: drop-shadow(0 0 10px var(--glow, #f06020)); }
+
+  .greeting-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,160,74,0.3);
+    border-radius: 16px;
+    padding: 32px 40px;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 2.4s ease both;
+    margin-bottom: 40px;
+  }
+
+  .greeting-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: #ffe89a;
+    direction: rtl;
+    margin-bottom: 12px;
+    line-height: 2;
+  }
+
+  .greeting-text {
+    font-size: 1rem;
+    color: rgba(240,230,200,0.75);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  .ornament-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    margin: 16px 0;
+    opacity: 0.7;
+  }
+
+  .prayer-section {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 2.6s ease both;
+    margin-bottom: 40px;
+  }
+
+  .prayer-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    color: rgba(240,230,200,0.7);
+    line-height: 2;
+  }
+
+  .quranic-verse {
+    background: rgba(200,160,74,0.08);
+    border-left: 3px solid #c8a04a;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 28px auto;
+    max-width: 480px;
+    animation: fadeIn 2.8s ease both;
+  }
+
+  .verse-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    color: #ffe89a;
+    direction: rtl;
+    margin-bottom: 10px;
+    line-height: 2;
+  }
+
+  .verse-translation {
+    font-size: 0.9rem;
+    color: rgba(240,230,200,0.55);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px;
+    max-width: 560px;
+    width: 100%;
+    margin-bottom: 48px;
+    animation: fadeIn 3s ease both;
+  }
+
+  .pillar-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,160,74,0.2);
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,160,74,0.6);
+  }
+
+  .pillar-icon { font-size: 28px; margin-bottom: 8px; }
+  .pillar-name { font-size: 0.85rem; color: #c8a04a; font-weight: 600; margin-bottom: 4px; letter-spacing: 1px; }
+  .pillar-desc { font-size: 0.78rem; color: rgba(240,230,200,0.45); line-height: 1.5; }
+
+  .takbeer {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: #ffe89a;
+    text-align: center;
+    direction: rtl;
+    text-shadow: 0 0 20px rgba(255,232,154,0.4);
+    animation: pulse 3s ease-in-out infinite;
+    margin-bottom: 16px;
+    line-height: 2;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 30px rgba(255,232,154,0.7); }
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    color: rgba(240,230,200,0.3);
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  .particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 2;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: floatUp var(--dur, 8s) ease-in infinite var(--delay, 0s);
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-10vh) translateX(var(--drift, 20px)); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="stars-container" id="stars"></div>
+<div id="particles"></div>
+
+<div class="main">
+
+  <div class="moon-wrap">
+    <div class="moon"></div>
+    <div class="star-moon">★</div>
+  </div>
+
+  <div class="arabic-title">عيد الأضحى مبارك</div>
+  <div class="english-title">Eid Mubarak</div>
+  <div class="subtitle">— Blessed Feast of Sacrifice —</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond">✦</div>
+    <div class="divider-diamond">✦</div>
+    <div class="divider-diamond">✦</div>
+    <div class="divider-line right"></div>
+  </div>
+
+  <div class="lanterns">
+    <div class="lantern" style="--sw:5s;--sd:0s;--glow:#e05010">
+      <svg width="36" height="70" viewBox="0 0 36 70">
+        <line x1="18" y1="0" x2="18" y2="8" stroke="#c8a04a" stroke-width="2"/>
+        <rect x="8" y="8" width="20" height="4" rx="2" fill="#c8a04a"/>
+        <ellipse cx="18" cy="14" rx="10" ry="4" fill="#b04010"/>
+        <rect x="8" y="14" width="20" height="36" rx="4" fill="#e05010"/>
+        <line x1="11" y1="14" x2="11" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <line x1="18" y1="14" x2="18" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <line x1="25" y1="14" x2="25" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <ellipse cx="18" cy="50" rx="10" ry="4" fill="#b04010"/>
+        <rect x="10" y="50" width="16" height="6" rx="2" fill="#c8a04a"/>
+        <ellipse cx="18" cy="32" rx="5" ry="5" fill="#ffe89a" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="lantern" style="--sw:4.5s;--sd:0.8s;--glow:#c8a04a">
+      <svg width="44" height="80" viewBox="0 0 44 80">
+        <line x1="22" y1="0" x2="22" y2="8" stroke="#c8a04a" stroke-width="2"/>
+        <rect x="10" y="8" width="24" height="5" rx="2" fill="#c8a04a"/>
+        <ellipse cx="22" cy="16" rx="12" ry="5" fill="#8a6a00"/>
+        <rect x="10" y="16" width="24" height="42" rx="5" fill="#c8a04a"/>
+        <line x1="14" y1="16" x2="14" y2="58" stroke="#8a6a00" stroke-width="1.2" opacity="0.6"/>
+        <line x1="22" y1="16" x2="22" y2="58" stroke="#8a6a00" stroke-width="1.2" opacity="0.6"/>
+        <line x1="30" y1="16" x2="30" y2="58" stroke="#8a6a00" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="22" cy="58" rx="12" ry="5" fill="#8a6a00"/>
+        <rect x="13" y="58" width="18" height="7" rx="3" fill="#c8a04a"/>
+        <ellipse cx="22" cy="37" rx="6" ry="6" fill="#ffe89a" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="lantern" style="--sw:5.5s;--sd:1.5s;--glow:#1060b0">
+      <svg width="36" height="70" viewBox="0 0 36 70">
+        <line x1="18" y1="0" x2="18" y2="8" stroke="#c8a04a" stroke-width="2"/>
+        <rect x="8" y="8" width="20" height="4" rx="2" fill="#c8a04a"/>
+        <ellipse cx="18" cy="14" rx="10" ry="4" fill="#0a3a80"/>
+        <rect x="8" y="14" width="20" height="36" rx="4" fill="#1060b0"/>
+        <line x1="11" y1="14" x2="11" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <line x1="18" y1="14" x2="18" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <line x1="25" y1="14" x2="25" y2="50" stroke="#c8a04a" stroke-width="1" opacity="0.5"/>
+        <ellipse cx="18" cy="50" rx="10" ry="4" fill="#0a3a80"/>
+        <rect x="10" y="50" width="16" height="6" rx="2" fill="#c8a04a"/>
+        <ellipse cx="18" cy="32" rx="5" ry="5" fill="#ffe89a" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="greeting-card">
+    <div class="greeting-arabic">
+      تقبّل الله منا ومنكم صالح الأعمال
+    </div>
+    <div class="ornament-row">✦ ✧ ✦</div>
+    <div class="greeting-text">
+      May Allah accept from us and from you our good deeds.<br>
+      Wishing you and your family a blessed Eid Al-Adha<br>
+      filled with joy, peace, and the spirit of sacrifice.
+    </div>
+  </div>
+
+  <div class="quranic-verse">
+    <div class="verse-arabic">
+      لَن يَنَالَ اللَّهَ لُحُومُهَا وَلَا دِمَاؤُهَا وَلَٰكِن يَنَالُهُ التَّقْوَىٰ مِنكُمْ
+    </div>
+    <div class="verse-translation">
+      "Their meat will not reach Allah, nor will their blood, but what reaches Him is piety from you."
+      <br>— Surah Al-Hajj 22:37
+    </div>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar-card">
+      <div class="pillar-icon">🕌</div>
+      <div class="pillar-name">Eid Prayer</div>
+      <div class="pillar-desc">Gathering in worship at dawn</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🐑</div>
+      <div class="pillar-name">Qurbani</div>
+      <div class="pillar-desc">Sacrifice in the way of Allah</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🤲</div>
+      <div class="pillar-name">Charity</div>
+      <div class="pillar-desc">Sharing with those in need</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">👨‍👩‍👧‍👦</div>
+      <div class="pillar-name">Family</div>
+      <div class="pillar-desc">Togetherness and love</div>
+    </div>
+  </div>
+
+  <div class="takbeer">
+    اللهُ أَكْبَرُ، اللهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللهُ
+    <br>
+    اللهُ أَكْبَرُ، اللهُ أَكْبَرُ، وَلِلَّهِ الحَمْد
+  </div>
+
+  <div class="divider" style="margin-top:12px">
+    <div class="divider-line"></div>
+    <div class="divider-diamond">✦</div>
+    <div class="divider-line right"></div>
+  </div>
+
+  <div class="footer">EID AL-ADHA · BLESSED FEAST OF SACRIFICE</div>
+</div>
+
+<script>
+  // Generate twinkling stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --dur:${2+Math.random()*4}s;
+      --delay:${Math.random()*5}s;
+      --min-op:${0.1+Math.random()*0.4};
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // Generate floating gold particles
+  const particlesEl = document.getElementById('particles');
+  const colors = ['#ffe89a','#c8a04a','#f0c040','#fff8e0'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      --dur:${6+Math.random()*8}s;
+      --delay:${Math.random()*8}s;
+      --drift:${(Math.random()-0.5)*60}px;
+    `;
+    particlesEl.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
